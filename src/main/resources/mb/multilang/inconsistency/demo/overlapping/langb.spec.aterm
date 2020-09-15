@@ -6,7 +6,7 @@ FileSpec(
 , [ Rule(
       NoName()
     , C("interface!myConstraint", [Op("C", []){OfSort(SORT("S"))}, Wld(){OfSort(STRING())}])
-    , CFalse(NoMessage())
+    , CFalse(Message(Error(), Formatted([Text("Error from langB")]), NoOrigin()))
     )
   , Rule(
       NoName()
@@ -18,9 +18,9 @@ FileSpec(
       )
     )
   ]
-, [ ("interface!declareRel", 1, Label("interface!rel"))
-  , ("interface!declareRel", 1, Decl())
+, [ ("langb!fileOk", 1, Decl())
   , ("langb!fileOk", 1, Label("interface!rel"))
-  , ("langb!fileOk", 1, Decl())
+  , ("interface!declareRel", 1, Decl())
+  , ("interface!declareRel", 1, Label("interface!rel"))
   ]
 )

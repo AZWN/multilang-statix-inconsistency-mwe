@@ -86,9 +86,9 @@ FileSpec(
       )
     )
   ]
-, [ ("interface!declareRel", 1, Label("interface!rel"))
-  , ("interface!declareRel", 1, Decl())
+, [ ("langb!fileOk", 1, Decl())
   , ("langb!fileOk", 1, Label("interface!rel"))
-  , ("langb!fileOk", 1, Decl())
+  , ("interface!declareRel", 1, Decl())
+  , ("interface!declareRel", 1, Label("interface!rel"))
   ]
 )

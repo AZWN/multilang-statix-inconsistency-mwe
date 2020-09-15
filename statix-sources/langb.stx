@@ -2,15 +2,11 @@ module langb
 
 imports interface
 
-signature
-  constructors
-    C : S
-
 rules
 
-  // myConstraint(C(), "") :- false.		// Interference, term '()' taking precedence over '_'. in langa.stx
-  myConstraint(C(), _) :- false 			// Overlapping pattern -> spec rejected at load stage
-    | error $[Error from langB].		
+  myConstraint(C(), "") :- false			// Interference, term '()' taking precedence over '_'. in langa.stx
+  // myConstraint(C(), _) :- false 			// Overlapping pattern -> spec rejected at load stage
+    | error $[Error defined in lang B module].		
 
 rules
 

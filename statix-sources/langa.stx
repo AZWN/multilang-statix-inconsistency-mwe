@@ -2,10 +2,6 @@ module langa
 
 imports interface
 
-signature
-  constructors
-    C : S
-
 rules
 
   // Two variants
@@ -23,7 +19,7 @@ rules
     // Will fail when solved with spec: interface + langa + langb
     myConstraint(C(), ""),
     // Find instance of C in global scope
-    // Global query will delay constraint solving until final stage
+    // Query in global scope will delay constraint solving until final stage
     // So will always be solved with langb spec loaded
     // And therefore will always fail
     import(s, "") == (r, str),

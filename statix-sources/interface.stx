@@ -3,7 +3,8 @@ module interface
 signature
   // Declare sort without constructors
   // Implementing languages may add constructors for this sort
-  sorts S
+  sorts S constructors
+    C : S
   
   namespaces
     Ns : string
