@@ -39,7 +39,7 @@ Futhermore, language A's entry point (`fileOk`) tries to solve constraint `myCon
 ##### Runtime
 
 So what happens at runtime is the following. In the current solver, solving is done in 2 steps:
-1. The constraints for all files are solved in isolation. This may yield constraint that cannot be decided without results from the other files. These constraints are therefore _delayed_.
+1. The constraints for all files are solved in isolation. This may yield constraints that cannot be decided without results from the other files. These constraints are therefore _delayed_.
 2. All intermediate results are combined, and all delayed constraints are solved.
 
 When the solver encounters a constraint, 3 things can happen:
@@ -52,8 +52,8 @@ Because the variant `myConstraint(C(), "unused")` does not apply (`""` cannot be
 
 However, when (still in phase 1) module `langb` is added to the spec as well, the solver has all three variants available. It will now choose `myConstraint(C(), "") :- false.`, because the term `""` takes precedence over `_`. Now the constraint fails.
 
-That this can result in really counterintuitive behaviour, is demonstrated by the other 2 constraints in the entry point of `langa`. Together they consitute the exact same constraint (`myConstraint(C(), "")`) as the inital one. 
-However, the arguments are actually query results, which can only be resolved in phase 2. When the constraint `myConstraint(C(), "")` is then instantiated in phase 2, suddenly the variant of `langb` (which was not available in phase 1) is available, and choosen. 
+That this can result in really counterintuitive behaviour, is demonstrated by the other 2 constraints in the entry point of `langa`. Together they constitute the exact same constraint (`myConstraint(C(), "")`) as the inital one. 
+However, the arguments are actually query results, which can only be resolved in phase 2 (since in phase 1, 2 variant might apply, and not all arguments are ground). When the constraint `myConstraint(C(), "")` is then instantiated in phase 2, suddenly the variant of `langb` (which was not available in phase 1) is available, and choosen. 
 Now in the same solver run, the same constraint once succeeds, and once fails.
 
 In the solver log, this is visible as well:
