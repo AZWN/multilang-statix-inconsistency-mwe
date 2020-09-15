@@ -1,0 +1,51 @@
+FileSpec(
+  ["interface"]
+, []
+, [Decl()]
+, EOP()
+, [ Rule(
+      NoName()
+    , C("interface!myConstraint", [Op("C", []){OfSort(SORT("S"))}, Str("unused"){OfSort(STRING())}])
+    , CTrue()
+    )
+  , Rule(
+      NoName()
+    , C("interface!myConstraint", [Op("C", []){OfSort(SORT("S"))}, Wld(){OfSort(STRING())}])
+    , CTrue()
+    )
+  , Rule(
+      NoName()
+    , C("langa!fileOk", [Var("s"){OfSort(SCOPE())}])
+    , CExists(
+        [Var("r"){OfSort(SORT("S"))}, Var("str"){OfSort(STRING())}, Var("import3"){OfSort(TUPLE([SORT("S"), STRING()]))}]
+      , CConj(
+          C(
+            "interface!myConstraint"
+          , [Op("C", []){OfSort(SORT("S"))}, Str(""){OfSort(STRING())}]
+          , NoMessage()
+          )
+        , CConj(
+            CConj(
+              C(
+                "interface!import"
+              , [Var("s"){OfSort(SCOPE())}, Str(""){OfSort(STRING())}, Var("import3"){OfSort(TUPLE([SORT("S"), STRING()]))}]
+              , NoMessage()
+              )
+            , CEqual(
+                Var("import3"){OfSort(TUPLE([SORT("S"), STRING()]))}
+              , Tuple([Var("r"){OfSort(SORT("S"))}, Var("str"){OfSort(STRING())}]){OfSort(TUPLE([SORT("S"), STRING()]))}
+              , NoMessage()
+              )
+            )
+          , C("interface!myConstraint", [Var("r"){OfSort(SORT("S"))}, Var("str"){OfSort(STRING())}], NoMessage())
+          )
+        )
+      )
+    )
+  ]
+, [ ("interface!declareRel", 1, Label("interface!rel"))
+  , ("interface!declareRel", 1, Decl())
+  , ("langb!fileOk", 1, Label("interface!rel"))
+  , ("langb!fileOk", 1, Decl())
+  ]
+)

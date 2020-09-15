@@ -1,0 +1,94 @@
+FileSpec(
+  []
+, []
+, [Decl(), Label("interface!rel")]
+, EOP()
+, [ Rule(
+      NoName()
+    , C(
+        "interface!declareRel"
+      , [Var("s_glob"){OfSort(SCOPE())}, Var("str"){OfSort(STRING())}, Var("sp"){OfSort(SORT("S"))}]
+      )
+    , CConj(
+        CTellRel(
+          Label("interface!rel")
+        , [ StxOccurrence("interface!Ns", [Var("str"){OfSort(STRING())}], NoId())
+          , Tuple([Var("sp"){OfSort(SORT("S"))}, Str(""){OfSort(STRING())}]){OfSort(TUPLE([SORT("S"), STRING()]))}
+          ]
+        , Var("s_glob"){OfSort(SCOPE())}
+        )
+      , CTellRel(
+          Decl()
+        , [StxOccurrence("interface!Ns", [Var("str"){OfSort(STRING())}], NoId())]
+        , Var("s_glob"){OfSort(SCOPE())}
+        )
+      )
+    )
+  , Rule(
+      NoName()
+    , C(
+        "interface!import"
+      , [Var("s_glob"){OfSort(SCOPE())}, Var("str"){OfSort(STRING())}, Var("out3"){OfSort(TUPLE([SORT("S"), STRING()]))}]
+      )
+    , CExists(
+        [Var("res"){OfSort(TUPLE([SORT("S"), STRING()]))}, Var("wld0"){OfSort(PATH())}, Var("wld4"){OfSort(OCCURRENCE())}, Var("wld5"){ OfSort(
+                                                                                                                                          LIST(
+                                                                                                                                            TUPLE(
+                                                                                                                                              [PATH(), TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])]
+                                                                                                                                            )
+                                                                                                                                          )
+                                                                                                                                        )
+                                                                                                                                      }]
+      , CConj(
+          CEqual(Var("out3"){OfSort(TUPLE([SORT("S"), STRING()]))}, Var("res"){OfSort(TUPLE([SORT("S"), STRING()]))}, NoMessage())
+        , CResolveQuery(
+            Label("interface!rel")
+          , Filter(Neg(Empty()), LLam([Wld(){OfSort(
+                                               TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])
+                                             )}], CTrue()))
+          , Min([], LLam([Wld(){OfSort(
+                                  TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])
+                                )}, Wld(){OfSort(
+                                            TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])
+                                          )}], CFalse(NoMessage())))
+          , Var("s_glob"){OfSort(SCOPE())}
+          , ListTail(
+              [ Tuple(
+                  [Var("wld0"){OfSort(PATH())}, Tuple([Var("wld4"){OfSort(OCCURRENCE())}, Var("res"){OfSort(TUPLE([SORT("S"), STRING()]))}]){OfSort(
+                                                                                                                                               TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])
+                                                                                                                                             )}]
+                ){ OfSort(
+                     TUPLE(
+                       [PATH(), TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])]
+                     )
+                   )
+                 }
+              ]
+            , Var("wld5"){ OfSort(
+                             LIST(
+                               TUPLE(
+                                 [PATH(), TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])]
+                               )
+                             )
+                           )
+                         }
+            ){ OfSort(
+                 LIST(
+                   TUPLE(
+                     [PATH(), TUPLE([OCCURRENCE(), TUPLE([SORT("S"), STRING()])])]
+                   )
+                 )
+               )
+             }
+          , NoMessage()
+          )
+        )
+      )
+    )
+  ]
+, [ ("interface!declareRel", 1, Label("interface!rel"))
+  , ("interface!declareRel", 1, Decl())
+  , ("langb!fileOk", 1, Label("interface!rel"))
+  , ("langb!fileOk", 1, Decl())
+  ]
+)

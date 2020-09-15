@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = "https://artifacts.metaborg.org/content/groups/public/" }
+}
+
+dependencies {
+    implementation 'org.metaborg:statix.solver:2.5.11'
+
+    // Logging
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.3'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.3'
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.6.4'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.4'
+}

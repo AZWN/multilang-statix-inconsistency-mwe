@@ -1,0 +1,26 @@
+FileSpec(
+  ["interface"]
+, []
+, [Decl()]
+, EOP()
+, [ Rule(
+      NoName()
+    , C("interface!myConstraint", [Op("C", []){OfSort(SORT("S"))}, Wld(){OfSort(STRING())}])
+    , CFalse(NoMessage())
+    )
+  , Rule(
+      NoName()
+    , C("langb!fileOk", [Var("s"){OfSort(SCOPE())}])
+    , C(
+        "interface!declareRel"
+      , [Var("s"){OfSort(SCOPE())}, Str(""){OfSort(STRING())}, Op("C", []){OfSort(SORT("S"))}]
+      , NoMessage()
+      )
+    )
+  ]
+, [ ("interface!declareRel", 1, Label("interface!rel"))
+  , ("interface!declareRel", 1, Decl())
+  , ("langb!fileOk", 1, Label("interface!rel"))
+  , ("langb!fileOk", 1, Decl())
+  ]
+)
