@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         // One failing constraint
-        new Demo(Demo.DemoSet.INCONSISTENT, true, Level.Warn).run();
+        new Demo(Demo.DemoSet.INCONSISTENT, true, Level.Info).run();
         // Current implementation, 2 failing constraints
         new Demo(Demo.DemoSet.INCONSISTENT, false, Level.Warn).run();
 
