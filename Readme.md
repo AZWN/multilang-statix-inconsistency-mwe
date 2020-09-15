@@ -53,7 +53,7 @@ Because the variant `myConstraint(C(), "unused")` does not apply (`""` cannot be
 However, when (still in phase 1) module `langb` is added to the spec as well, the solver has all three variants available. It will now choose `myConstraint(C(), "") :- false.`, because the term `""` takes precedence over `_`. Now the constraint fails.
 
 That this can result in really counterintuitive behaviour, is demonstrated by the other 2 constraints in the entry point of `langa`. Together they constitute the exact same constraint (`myConstraint(C(), "")`) as the inital one. 
-However, the arguments are actually query results, which can only be resolved in phase 2 (since in phase 1, the uninstantiated variable could be unified with `""` as well as `"unused"`. So 2 variants might apply, and not all arguments are ground.). When the constraint `myConstraint(C(), "")` is then instantiated in phase 2, suddenly the variant of `langb` (which was not available in phase 1) is available, and choosen. 
+However, the arguments are actually query results, which can only be resolved in phase 2 (since in phase 1, the uninstantiated variable could be unified with `""` as well as `"unused"`. So 2 variants might apply, and not all arguments are ground.). When the constraint `myConstraint(C(), "")` is then instantiated in phase 2, suddenly the variant of `langb` (which was not available in phase 1) is available, and chosen. 
 Now in the same solver run, the same constraint once succeeds, and once fails.
 
 In the solver log, this is visible as well:
