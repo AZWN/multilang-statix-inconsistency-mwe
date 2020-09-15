@@ -1,0 +1,34 @@
+module interface
+
+signature
+  // Declare sort without constructors
+  // Implementing languages may add constructors for this sort
+  sorts S
+  
+  namespaces
+    Ns : string
+  
+  relations
+    rel: occurrence -> (S * string)
+
+rules
+
+  // Declare constraint without rules. Languages may add rules to it.
+  // String parameter used to be able to create multiple variants
+  // This inhibits the solver to choose a variant in the partial solve phases.
+  myConstraint: S * string
+
+rules
+
+  declareRel: scope * string * S
+
+  declareRel(s_glob, str, sp) :-
+    s_glob -> Ns{str} with rel (sp, "").
+
+rules
+
+  import: scope * string -> (S * string)
+
+  import(s_glob, str) = res :-
+    query rel in s_glob |-> [(_, (_, res)) | _].
+

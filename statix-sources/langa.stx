@@ -1,0 +1,30 @@
+module langa
+
+imports interface
+
+signature
+  constructors
+    C : S
+
+rules
+
+  // Two variants
+  // Therefore solver cannot decide in partial solve phase
+  myConstraint(C(), "unused").
+  myConstraint(C(), _).
+
+rules
+
+  fileOk : scope /* AST omitted for brevity */
+
+  fileOk(s) :- {r str}
+    // Solve myConstraint in local file solver
+    // Will succeed when solved with spec: interface + langa
+    // Will fail when solved with spec: interface + langa + langb
+    myConstraint(C(), ""),
+    // Find instance of C in global scope
+    // Global query will delay constraint solving until final stage
+    // So will always be solved with langb spec loaded
+    // And therefore will always fail
+    import(s, "") == (r, str),
+    myConstraint(r, str).
